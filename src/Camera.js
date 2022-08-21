@@ -20,7 +20,6 @@ const blockPositions = {
 
 export function Camera({ block }) {
   let blockPosition = blockPositions[block];
-  console.log(blockPosition);
 
   const cam = useRef();
   useFrame(({ mouse }, delta) => {

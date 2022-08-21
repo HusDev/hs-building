@@ -1,37 +1,13 @@
-import React, { Suspense, useEffect, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  MeshReflectorMaterial,
-  useTexture,
-  OrbitControls,
-  Environment,
-} from "@react-three/drei";
+import React, { Suspense, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Environment } from "@react-three/drei";
 import Overlay from "./Overlay";
 import { Model } from "./Harbour.space";
 import { DialogModal } from "./DialogModal";
 import { VideoText } from "./VideoText";
 import { Camera } from "./Camera";
-
-function Ground() {
-  const floor = useTexture("TexturesCom_Asphalt_Base11_header.jpg");
-  return (
-    <mesh rotation-x={Math.PI * -0.5}>
-      <planeGeometry args={[10, 10]} />
-      <MeshReflectorMaterial map={floor} />
-    </mesh>
-  );
-}
-
-function Intro({ start, set }) {
-  useEffect(() => {
-    setTimeout(() => set(true), 500);
-  }, [set]);
-  return useFrame((state) => {
-    if (start) {
-      state.camera.lookAt(0, 0, 0);
-    }
-  });
-}
+import { Ground } from "./Ground";
+import { Intro } from "./Intro";
 
 export default function App() {
   const [currentBlock, setCurrentBlock] = useState("default");
